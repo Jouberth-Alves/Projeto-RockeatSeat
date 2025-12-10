@@ -1,0 +1,193 @@
+* {
+  /* asterisco é um seletor universal*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Oque eu fiz aqui em cima foi resetar as pré-definições do CSS para que somente meu codigo desse ordens */
+}
+
+:root {
+  /* raiz do código */
+  --text-color: white; /* variável var() */
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  /*
+  background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  
+
+  Isso tudo acima pode ser substituido por:
+  background { cor image(url()) repeat position/size */
+  background: var(--bg-url) no-repeat top center/cover;
+}
+#Cabo {
+  padding: 0 24px;
+  width: 360px;
+  /*margin-right: auto;
+  margin-left: auto;
+  em vez de fazer isso pra centralizar a caixa pode se usar somente o margin: auto;
+  
+  mas desse jeito também funciona*/
+  margin: 56px auto 0px auto;
+  /*     cima ladoD baixo ladoE 
+  margin funciona igual um relógio. */
+}
+
+/* profille */
+
+#Profile img {
+  width: 112px;
+  /*margin não funciona aqui porque a imagem é um elemento em inline*/
+
+  /*display: block;
+  margin: auto;*/
+
+  /*pra contornar isso basta transformar a imagem em um elemento block e aplicar o margin depois.*/
+
+  /*mas isso pode ser feito de uma maneira mais facil, simplesmente pegando o pai do profile img (que no caso seria o #profile) e usando a ferramenta text-align: ;*/
+}
+#Profile {
+  text-align: center;
+  padding: 24px;
+}
+body * {
+  font-family: "inter", sans-serif;
+  color: var(--text-color);
+}
+#Profille p {
+  font-weight: 500;
+  line-height: 24px;
+  font-size: large;
+  margin-top: 8px;
+}
+
+#Profille img:hover {
+  background: var(--highlight-color);
+  padding: 5px;
+  border-radius: 50%;
+}
+
+#Profille p:hover {
+  font-weight: 600;
+}
+
+/* switch */
+
+#switch {
+  position: relative; /* iso aqui faz a position: absolute; ficar relativo a borda do switch */
+  width: 64px;
+  margin: 4px auto;
+}
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px; /* 9999 também é uma esfera */
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: white var(--switch-bg-url) no-repeat center;
+  position: absolute; /* esse elemento usa um sistema de andar como visto no z-index */
+
+  /* outras funções do position: ;
+  top: ;
+  right: ;
+  left: ;
+  bottom: ; */
+  z-index: 1;
+  /* top: -10%; maneira facil :p */
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+}
+
+.light #switch button {
+  right: 0;
+  left: initial;
+}
+/* Links */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Serve para deixar o display flex em coluna */
+  gap: 16px; /* espaço entre os elementos aka: margin do display flex*/
+  padding: 24px 0;
+}
+ul li a {
+  display: flex;
+  justify-content: center;
+  padding: 16px 24px;
+  /*        UL   R/L            Upper-Lower Right Left */
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px; /* Arredondamento de borda */
+  backdrop-filter: blur(8px); /* Deixa o fundo um pouco embaçado */
+  -webkit-backdrop-filter: blur(
+    8px
+  ); /* webkit é um prefixo para alguns browsers para conseguirem processar os elementos CSS */
+
+  text-decoration: none; /* Para tirar aquelas linhas em baixo do link. No lugar do none pode ser usado o line-through, underline e overline */
+  font-weight: 500;
+  transition: background 0.5s; /* Transição, funciona assim: transition: elemento que vai ser transicionado | tempo que o elemento ira transicionar; */
+}
+ul li a:hover {
+  /*  ":" é umpseudo-selector, hover significa quando o mouse está em cima do elemento */
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+/* social-links */
+#social-links {
+  display: flex;
+  gap: 32px;
+
+  padding: 24px 0;
+  font-size: 24px; /* Quando usa o font-size dentro de um atributo ele ira mudar todos elementos ali dentro. Mas aqui os unicos elementos são os icones. */
+  justify-content: center;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  margin-top: -25px;
+  transition: background 0.5s;
+  border-radius: 50%; /* 50% é uma esfera perfeita. */
+}
+
+#social-links a:hover {
+  /* Quando passar o mouse em cima */
+  background: var(--highlight-color);
+}
+footer {
+  /*Rodapé */
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 600;
+}
